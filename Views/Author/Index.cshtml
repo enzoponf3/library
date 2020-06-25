@@ -1,0 +1,20 @@
+﻿@using PonfeLibrary.Models
+@{
+}
+
+<div class="author-container">
+    @foreach (var a in ViewBag.Authors)
+    {
+        <div>
+            <div class="author">
+                <h4>@a.Name</h4> <br>
+                <h5>@a.Nationality</h5>
+
+            </div>
+        </div>
+        <div>
+            <button>Edit</button>
+            <button>Delete</button>
+        </div>
+    }
+</div>
