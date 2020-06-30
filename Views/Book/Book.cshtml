@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Books";
+
+}
+
+@foreach (var b in ViewBag.Books)
+{
+    <div class="book-container">
+            <div>
+                <div class="book">
+                    <h4>@b.Title</h4>
+                    <h5>@b.Subtitle</h5>
+                    <span>ISBN: @b.Isbn <br />
+                          Publisher: @b.PubId <br />
+                          Author/s: @b.BookAuth.ToString()
+                    </span>
+                    
+                </div>
+            </div>
+            <div>
+                <a asp-action="Edit" asp-route-id="@b.Id">Edit</a>
+                <a asp-action="Delete" asp-route-id="@b.Id">Delete</a>
+            </div>
+    </div>
+}

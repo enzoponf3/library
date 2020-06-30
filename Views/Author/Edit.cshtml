@@ -1,0 +1,24 @@
+﻿@model PonfeLibrary.Models.Author
+
+@{
+}
+<div>
+    <form asp-action="edit">
+        <div asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" asp-for="Id" />
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div>
+            <label asp-for="Nationality"></label>
+            <input asp-for="Nationality" />
+            <span asp-validation-for="Nationality"></span>
+        </div>
+        <div>
+            <input type="submit" value="Save" />
+            <a asp-action="Show">Cancel</a>
+        </div>
+    </form>
+</div>

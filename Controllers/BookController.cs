@@ -14,11 +14,12 @@ namespace PonfeLibrary.Controllers
         {
             db = lib;
         }
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult Show()
         {
             List<Book> books = db.Book.OrderBy(b => b.Title).ToList();
             ViewBag.Books = books;
-            return View();
+            return View("Views/Book/Book.cshtml");
         }
     }
 }
