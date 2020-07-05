@@ -1,0 +1,39 @@
+﻿.medium-container{
+    background:var(--color3);
+    padding:1rem;
+    border-radius:3px;
+    width: 45%;
+    margin: 1rem 0;
+    height: 30%;
+}
+
+
+.small-container {
+    background: var(--color3);
+    padding: 1rem;
+    border-radius: 3px;
+    width: 20%;
+    margin: 1rem 0;
+    height:20%;
+}
+
+.button-holder{
+    display:flex;
+    position:relative;
+    top:1rem;
+    padding: 1rem .5rem;
+    justify-content:right;
+
+}
+
+.button-holder > a {
+    color: var(--color1);
+    padding: .5rem 1rem;
+    border-radius: 3px;
+    transition: background-color ease-in .5s;
+    cursor: pointer;
+}
+
+.button-holder>a:hover {
+    background-color: var(--color2);
+}

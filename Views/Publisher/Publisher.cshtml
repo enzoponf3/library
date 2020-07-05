@@ -5,14 +5,12 @@
 }
 @foreach (var p in ViewBag.Publishers)
 {
-    <div class="publisher-container">
-            <div>
-                <div class="publisher">
-                    <h4>@p.Name</h4> <br>
+    <div class="small-container">            
+            <div class="publisher">
+                <h4>@p.Name</h4>
 
-                </div>
             </div>
-            <div>
+            <div class="button-holder">
                 <a asp-action="Edit" asp-route-id="@p.Id">Edit</a>
                 <a asp-action="Delete" asp-route-id="@p.Id">Delete</a>
             </div>

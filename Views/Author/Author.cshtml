@@ -4,17 +4,25 @@
 
 @foreach (var a in ViewBag.Authors)
 {
-    <div class="author-container">
-            <div>
-                <div class="author">
-                    <h4>@a.Name</h4> <br>
-                    <h5>@a.Nationality</h5>
-
-                </div>
-            </div>
-            <div>
+    <div class="small-container">            
+            <div class="author">
+                <h4>@a.Name</h4>
+                <h5>@a.Nationality</h5>
+            </div>            
+            <div class="button-holder">
                 <a asp-action="Edit" asp-route-id="@a.Id">Edit</a>
-                <a asp-action="Delete" asp-route-id="@a.Id">Delete</a>
+                <a onclick="toggleModal('author',@a.Id)">Delete</a>
+            </div>
+            <div id="delete-author-@a.Id" class="delete-modal">
+                <div class="delete-modal-content">
+                    <span>
+                        Are you sure you want to delete?
+                    </span>
+                    <div class="button-holder">
+                        <a asp-action="Delete" asp-route-id="@a.Id">Yes</a>
+                        <a onclick="toggleModal('author',@a.Id)">No</a>
+                    </div>
+                </div>
             </div>
     </div>
 }
