@@ -13,8 +13,8 @@
                 <a asp-action="Edit" asp-route-id="@a.Id">Edit</a>
                 <a onclick="toggleModal('author',@a.Id)">Delete</a>
             </div>
-            <div id="delete-author-@a.Id" class="delete-modal">
-                <div class="delete-modal-content">
+            <div id="delete-author-@a.Id" class="modal">
+                <div class="modal-content">
                     <span>
                         Are you sure you want to delete?
                     </span>

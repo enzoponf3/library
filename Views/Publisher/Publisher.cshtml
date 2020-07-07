@@ -5,14 +5,25 @@
 }
 @foreach (var p in ViewBag.Publishers)
 {
-    <div class="small-container">            
-            <div class="publisher">
-                <h4>@p.Name</h4>
+    <div class="small-container">
+        <div class="publisher">
+            <h4>@p.Name</h4>
 
+        </div>
+        <div class="button-holder">
+            <a asp-action="Edit" asp-route-id="@p.Id">Edit</a>
+            <a onclick="toggleModal('publisher',@p.Id)">Delete</a>
+        </div>
+        <div id="delete-publisher-@p.Id" class="modal">
+            <div class="modal-content">
+                <span>
+                    Are you sure you want to delete?
+                </span>
+                <div class="button-holder">
+                    <a asp-action="Delete" asp-route-id="@p.Id">Yes</a>
+                    <a onclick="toggleModal('publisher',@p.Id)">No</a>
+                </div>
             </div>
-            <div class="button-holder">
-                <a asp-action="Edit" asp-route-id="@p.Id">Edit</a>
-                <a asp-action="Delete" asp-route-id="@p.Id">Delete</a>
-            </div>
+        </div>
     </div>
 }

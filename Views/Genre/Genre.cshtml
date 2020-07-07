@@ -6,14 +6,25 @@
 @foreach (var g in ViewBag.Genres)
 {
     <div class="medium-container">
-            <div class="author">
-                <h4>@g.Name</h4>
-                <h5>@g.Description</h5>
+        <div class="author">
+            <h4>@g.Name</h4>
+            <h5>@g.Description</h5>
 
+        </div>
+        <div class="button-holder">
+            <a asp-action="Edit" asp-route-id="@g.Id">Edit</a>
+            <a onclick="toggleModal('genre',@g.Id)">Delete</a>
+        </div>
+        <div id="delete-genre-@g.Id" class="modal">
+            <div class="modal-content">
+                <span>
+                    Are you sure you want to delete?
+                </span>
+                <div class="button-holder">
+                    <a asp-action="Delete" asp-route-id="@g.Id">Yes</a>
+                    <a onclick="toggleModal('genre',@g.Id)">No</a>
+                </div>
             </div>
-            <div class="button-holder">
-                <a asp-action="Edit" asp-route-id="@g.Id">Edit</a>
-                <a asp-action="Delete" asp-route-id="@g.Id">Delete</a>
-            </div>
+        </div>
     </div>
 }

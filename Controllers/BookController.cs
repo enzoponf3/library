@@ -21,6 +21,21 @@ namespace PonfeLibrary.Controllers
             ViewBag.Books = books;
             return View("Views/Book/Book.cshtml");
         }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var book = await db.Book.FindAsync(id);
+            if (book == null)
+            {
+                return NotFound();
+            }
+            return View("Edit", book);
+        }
     }
    
 }

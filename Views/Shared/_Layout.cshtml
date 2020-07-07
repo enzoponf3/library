@@ -4,10 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PonfeLibrary</title>
-    <link rel="stylesheet" href="~/style/normalize.css"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <link rel="stylesheet" href="~/style/normalize.css" />
     <link rel="stylesheet" href="~/style/style.css" />
-    <link rel="stylesheet" href="~/style/containers.css"/>
-    <link rel="stylesheet" href="~/style/modal.css"/>
+    <link rel="stylesheet" href="~/style/containers.css" />
+    <link rel="stylesheet" href="~/style/modal.css" />
 </head>
 <body>
     <header>
@@ -32,10 +34,43 @@
                 </ul>
             </div>
         </nav>
-    </header> 
-    <main role="main" class="">
-        @RenderBody()
-    </main>
+    </header>
+    <div>
+        <main role="main" class="">
+            @RenderBody()
+        </main>
+        <div class="add-button">
+            <a onclick="toggleModal('add-modal')">
+                <span class="material-icons">
+                    add
+                </span>
+            </a>
+        </div>
+        <div id="add-modal" class="modal">
+            <div class="modal-content">
+                <span>
+                    Choose what do you want to add
+                </span>
+                <div >
+                    <a class="add-item">
+                        Book
+                    </a>
+                    <a class="add-item">
+                        Genre
+                    </a>
+                    <a class="add-item">
+                        Publisher
+                    </a>
+                    <a class="add-item">
+                        Author
+                    </a>
+                </div>
+                <div class="button-holder">
+                    <a onclick="toggleModal('add-modal')">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer>
         <div class="container">
             2020   &copy;   Enzo Ponferrada

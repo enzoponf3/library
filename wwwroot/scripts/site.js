@@ -1,6 +1,9 @@
 ﻿function toggleModal(type, id) {
-    console.log("delete-"+type+id)
+    if (id == null) {
+        let addBox = document.getElementById(type)
+        addBox.classList.toggle("modal-show")
+        return
+    }
     let box = document.getElementById("delete-" + type + "-" + id)
-    console.log(box)
     box.classList.toggle("modal-show")
 }
