@@ -2,23 +2,29 @@
 
 @{
 }
-<div>
-    <form asp-action="edit">
-        <div asp-validation-summary="ModelOnly"></div>
-        <input type="hidden" asp-for="Id" />
-        <div>
-            <label asp-for="Name"></label>
-            <input asp-for="Name" />
-            <span asp-validation-for="Name"></span>
-        </div>
-        <div>
-            <label asp-for="Nationality"></label>
-            <input asp-for="Nationality" />
-            <span asp-validation-for="Nationality"></span>
-        </div>
-        <div>
-            <input type="submit" value="Save" />
-            <a asp-action="Show">Cancel</a>
-        </div>
-    </form>
+<div class="edit-page">
+    <h5 class="page-title">Editing Author</h5>
+
+    <div class="form-container">
+        <form id="edit-form" asp-action="edit">
+            <div asp-validation-summary="ModelOnly"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-input">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" />
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-input">
+                <label asp-for="Nationality"></label>
+                <input asp-for="Nationality" />
+                <span asp-validation-for="Nationality"></span>
+            </div>
+            <div class="button-holder">
+                <input type="submit" hidden />
+                <a onclick="document.getElementById('edit-form').submit()">Save</a>
+                <a asp-action="Show">Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>
+

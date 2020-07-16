@@ -17,23 +17,107 @@
     height:20%;
 }
 
-.button-holder{
-    display:flex;
-    position:relative;
-    top:1rem;
-    padding: 1rem .5rem;
-    justify-content:right;
-
+.details-text {
+    transition: all .5s;
 }
 
-.button-holder > a {
-    color: var(--color1);
-    padding: .5rem 1rem;
+.fade-out{
+    opacity:0;
+}
+
+#details-arrow{
+    cursor:pointer;
+}
+
+#details-arrow :hover{
+    background:rgba(255,255,255,.3);
+}
+
+    #details-arrow > a {
+        display: flex;
+        padding: 5px;
+        height: .5rem;
+        align-items: center;
+        width: 100%;
+        border-radius: 3px;
+        justify-content: center;
+        transition: background ease .5s
+    }
+
+.button-holder {
+    display: flex;
+    position: relative;
+    top: 1rem;
+    padding: 0rem .5rem .5rem .5rem;
+    justify-content: right;
+}
+
+    .button-holder > a {
+        color: var(--color1);
+        padding: .5rem 1rem;
+        border-radius: 3px;
+        transition: background-color ease-in .5s;
+        cursor: pointer;
+    }
+
+    .button-holder>a:hover {
+        background-color: var(--color2);
+    }
+
+.form-container{
+    width:40%;
+    padding: 2rem 0;
+    background: var(--color6);
+    border-radius:3px;
+}
+
+#edit-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-input {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+label{
+    line-height:1.5rem;
+    margin-left:.5rem
+}
+
+input {
+    padding: .5rem;
+    background: var(--color5);
+    color: #e9e9e9;
+    border: solid transparent 3px;
     border-radius: 3px;
-    transition: background-color ease-in .5s;
-    cursor: pointer;
+    outline: none;
+    overflow:hidden;
 }
 
-.button-holder>a:hover {
-    background-color: var(--color2);
+input:focus {
+    border: solid var(--color2) 3px;
 }
+
+textarea {
+    padding: .5rem;
+    background: var(--color5);
+    color: #e9e9e9;
+    border: solid transparent 3px;
+    border-radius: 3px;
+    outline: none;
+    overflow: hidden;
+    min-height: 1rem;
+    resize:none;
+}
+
+    textarea:focus {
+        border: solid var(--color2) 3px;
+    }
+
+
+

@@ -17,7 +17,8 @@ function bookDetails(id) {
 }
 
 function moreDetails(book) {
-
+    let arrow = document.getElementById("details-arrow")
+    arrow.innerHTML=""
     let bkdesc = document.getElementById(`desc-${book.id}`)
     let authors = ""
     book.bookAuth.forEach(a =>{
@@ -28,10 +29,29 @@ function moreDetails(book) {
         genres = genres + g.gen.name + "  " 
     })
 
+    bkdesc.classList.add("fade-out")
+
     let fullDescription = ` ISBN: ${book.isbn} <br/> 
                             Author/s: ${authors} <br />
                             Genre/s: ${genres}<br />
                             Publisher: ${book.pub.name} <br />                 
                            `
-    bkdesc.innerHTML = fullDescription
+
+    setTimeout(() => {
+        bkdesc.innerHTML = fullDescription
+        bkdesc.classList.remove("fade-out")
+    }, 500)
+}
+
+
+function auto_grow(desc) {
+    desc.style.height = "5px"
+    desc.style.height = (desc.scrollHeight) + "px"
+}
+
+window.onload = () => {
+    if (document.URL.indexOf("Genre/Edit") != -1) {
+        let lgDescription = document.getElementById("Description")
+        auto_grow(lgDescription)
+    }
 }

@@ -9,11 +9,15 @@
         <div class="book">
             <h4>@b.Title</h4>
             <h5>@b.Subtitle</h5>
-            <span id="desc-@b.Id">ISBN: @b.Isbn</span>
+            <span class="details-text" id="desc-@b.Id">ISBN: @b.Isbn</span>
+        </div>
+        <div id="details-arrow" >
+            <a class="material-icons" onclick="bookDetails(@b.Id)">
+                keyboard_arrow_down
+            </a> 
         </div>
             
         <div class="button-holder">
-            <a onclick="bookDetails(@b.Id)">Details</a>
             <a asp-action="Edit" asp-route-id="@b.Id">Edit</a>
             <a onclick="toggleModal('book',@b.Id)">Delete</a>
         </div>
