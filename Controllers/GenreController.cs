@@ -62,5 +62,51 @@ namespace PonfeLibrary.Controllers
             }
             return View(genre);
         }
+        [HttpGet]
+        public async Task<IActionResult> Add()
+        {
+            return View("Add");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add([Bind("Name, Description")] Genre gen)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Add(gen);
+                    await db.SaveChangesAsync();
+                    return RedirectToAction(nameof(Show));
+                }
+            }
+            catch (DbUpdateException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. " + "Please try again.");
+            }
+            return View(nameof(Show));
+        }
+        
+        public async Task<IActionResult> Delete(int? id)
+        {
+            Genre gen = await db.Genre.FindAsync(id);
+            try
+            {
+                if (gen == null)
+                {
+                    return RedirectToAction(nameof(Show));
+
+                }
+                db.Genre.Remove(gen);
+                await db.SaveChangesAsync();
+                return RedirectToAction(nameof(Show));
+
+            }
+            catch (DbUpdateException)
+            {
+                ModelState.AddModelError("", "Unable to save changes. " + "Please try again.");
+            }
+            return RedirectToAction(nameof(Show));
+        }
     }
 }

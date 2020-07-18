@@ -45,7 +45,7 @@ function moreDetails(book) {
 
 
 function auto_grow(desc) {
-    desc.style.height = "5px"
+    desc.style.height = "1rem"
     desc.style.height = (desc.scrollHeight) + "px"
 }
 

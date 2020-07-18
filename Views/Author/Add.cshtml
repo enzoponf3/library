@@ -1,0 +1,30 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model PonfeLibrary.Models.Author;
+
+<div class="edit-page">
+    <h5 class="page-title">Adding Author</h5>
+
+    <div class="form-container">
+        <form id="add-form" asp-action="add">
+            <div asp-validation-summary="ModelOnly"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-input">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" placeholder="Name"/>
+                <span asp-validation-for="Name" ></span>
+            </div>
+            <div class="form-input">
+                <label asp-for="Nationality"></label>
+                <input asp-for="Nationality" placeholder="Nationality"/>
+                <span asp-validation-for="Nationality"></span>
+            </div>
+            <div class="button-holder">
+                <input type="submit" hidden />
+                <a onclick="document.getElementById('add-form').submit()">Add</a>
+                <a asp-action="Show">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

@@ -52,16 +52,16 @@
                     Choose what do you want to add
                 </span>
                 <div >
-                    <a class="add-item">
-                        Book
-                    </a>
-                    <a class="add-item">
-                        Genre
-                    </a>
-                    <a class="add-item">
-                        Publisher
-                    </a>
-                    <a class="add-item">
+                    <a class="add-item" asp-controller="Book" asp-action="Add" >
+                        Book            
+                    </a>                
+                    <a class="add-item" asp-controller="Genre" asp-action="Add" >
+                        Genre           
+                    </a>                
+                    <a class="add-item" asp-controller="Publisher" asp-action="Add" >
+                        Publisher       
+                    </a>                
+                    <a class="add-item" asp-controller="Author" asp-action="Add" >
                         Author
                     </a>
                 </div>
