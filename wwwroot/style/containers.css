@@ -69,7 +69,26 @@
     padding: 2rem 0;
     background: var(--color6);
     border-radius:3px;
+    margin-bottom:1rem;
 }
+
+.book-form{
+    width:fit-content;
+}
+
+.book-edit-info{
+    display:flex;
+    justify-content:space-evenly;
+  
+}
+    .book-edit-info>div{
+        margin: 0 10px;
+        width:fit-content;
+    }
+    
+        .book-edit-info>div>div{
+            width:100%;
+        }
 
 #edit-form, #add-form {
     display: flex;

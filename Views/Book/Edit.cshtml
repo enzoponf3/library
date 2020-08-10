@@ -1,27 +1,108 @@
 ﻿@model PonfeLibrary.Models.Book
 
 @{
-}
-<div class="edit-page">
-    <h5 class="page-title">Editing Publisher</h5>
 
-    <div class="form-container">
+}
+
+<div class="edit-page">
+    <h5 class="page-title">Editing Book</h5>
+
+    <div class="form-container book-form">
         <form id="edit-form" asp-action="edit">
             <div asp-validation-summary="ModelOnly"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-input">
-                <label asp-for="Title"></label>
-                <input asp-for="Title" />
-                <span asp-validation-for="Title"></span>
-            </div>
-            <div class="form-input">
-                <label asp-for="Subtitle"></label>
-                <input asp-for="Subtitle" />
-                <span asp-validation-for="Subtitle"></span>
+            <div class="book-edit-info">
+
+                <div>
+                    <div class="form-input">
+                        <label asp-for="Title"></label>
+                        <input asp-for="Title" />
+                        <span asp-validation-for="Title"></span>
+                    </div>
+                    <div class="form-input">
+                        <label asp-for="Subtitle"></label>
+                        <input asp-for="Subtitle" />
+                        <span asp-validation-for="Subtitle"></span>
+                    </div>
+                    <div class="form-input">
+                        <label>Publisher</label>
+                        <input list="publishers" asp-for="Pub.Name" onchange="changePub(this.value)" />
+                        <datalist id="publishers">
+                            @foreach(var publisher in ViewBag.Publishers)
+                            {
+                                <option id="pub-option-@publisher.Name"
+                                        data-value="@publisher.Id"
+                                        name="@(Html.Raw(publisher.Id == Model.Pub.Id ? "selectedPub":""))"
+                                        >@publisher.Name</option>
+                            }
+                        </datalist>
+                        <span asp-validation-for="Pub"></span>
+                    </div>
+
+                </div>
+                <div>
+                    <options></options>
+                    <div id="genres-div"class="form-input">
+                        <label>Genre/s:</label>
+                        <input list="genres"placeholder="Genre Name" onchange="addBookGenre(this.value)" />
+                        <datalist id="genres">
+                            @foreach(var genre in ViewBag.Genres)
+                            {
+                                var name = "";
+                                foreach(var bookGen in Model.BookGen)
+                                {
+                                    if(bookGen.Gen.Id == genre.Id) { name = "selectedGenres"; }
+                                }
+                                <option id="genre-option-@genre.Name" 
+                                        data-value="@genre.Id"
+                                        name="@name"
+                                        >@genre.Name</option>
+                            }
+                        </datalist>
+                        @foreach (var gen in Model.BookGen)
+                        {                         
+                            <div class="badge">
+                                <span>@Html.DisplayFor(genreItem => gen.Gen.Name)</span>
+                                <span onclick="removeFromList(`genre-option-`+this.parentElement.children[0].innerText,this.parentElement)" >x</span>
+                            </div>
+                        }
+                    </div>
+                    <div id="authors-div"class="form-input">
+                        <label>Author/s:</label>
+                        <input list="authors" placeholder="Author Name"onchange="addBookAuthor(this.value)"/>
+                        <datalist id="authors">
+                            @foreach(var author in ViewBag.Authors)
+                            {
+                                var name = "";
+                                foreach (var bookAu in Model.BookAuth)
+                                {
+                                    if (bookAu.Auth.Id == author.Id)
+                                    { 
+                                        name = "selectedAuthors"; 
+
+                                    }
+                                }
+                                <option id="author-option-@author.Name"
+                                        data-value="@author.Id"
+                                        name="@name"
+                                        >@author.Name</option>
+                            }
+                        </datalist>
+                        @foreach (var au in Model.BookAuth)
+                        {
+                            <div class="badge">
+                                <span>@Html.DisplayFor(auItem => au.Auth.Name)</span>
+                                <span onclick="removeFromList(`author-option-`+this.parentElement.children[0].innerText,this.parentElement)">x</span>
+                            </div>
+
+                        }
+                    </div>
+                </div>
+
             </div>
             <div class="button-holder">
                 <input type="submit" hidden />
-                <a onclick="document.getElementById('edit-form').submit()">Save</a>
+                <a onclick="sendBookForm(@Model.Id)">Save</a>
                 <a asp-action="Show">Cancel</a>
             </div>
         </form>

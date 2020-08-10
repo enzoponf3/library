@@ -124,6 +124,21 @@ footer {
     align-items:center;
 }
 
+.badge {
+    font-size: 13px;
+    height: 20px;
+    width: fit-content;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(255,255,255,.3);
+    border-radius: 20px;
+    margin-top: 5px;
+}
+    .badge>span{
+        margin: 0 8px;
+    }
+
 .page-title{
     font-size: 24px;
 }

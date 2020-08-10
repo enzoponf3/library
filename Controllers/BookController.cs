@@ -23,12 +23,11 @@ namespace PonfeLibrary.Controllers
             ViewBag.Books = books;
             return View("Views/Book/Book.cshtml");
         }
-        [HttpGet]
-        public async Task<IActionResult> Edit(int? id)
+        protected Book complementInformation (int? id)
         {
             if (id == null)
             {
-                return NotFound();
+                return null;
             }
 
             var book = db.Book.
@@ -41,30 +40,30 @@ namespace PonfeLibrary.Controllers
                 FirstOrDefault();
             if (book == null)
             {
-                return NotFound();
+                return null;
             }
+            return book;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            Book book = complementInformation(id);
+            if (book == null) return NotFound();
+            List<Genre> genres = db.Genre.OrderBy(g => g.Name).ToList();
+            List<Author> authors = db.Author.OrderBy(a => a.Name).ToList();
+            List<Publisher> publishers = db.Publisher.OrderBy(p => p.Name).ToList();
+            ViewBag.Authors = authors;
+            ViewBag.Genres = genres;
+            ViewBag.Publishers = publishers;
             return View("Edit", book);
         }
         [HttpGet]
         public IActionResult Details(int? id)
         {
-            if(id == null)
-            {
-                return NotFound();
-            }
-            var bk = db.Book.
-                Include(b=>b.BookAuth).
-                    ThenInclude(a=>a.Auth).
-                Include(b=>b.BookGen).
-                    ThenInclude(g=>g.Gen).
-                Include(b => b.Pub).
-                Where(b => b.Id ==id).
-                FirstOrDefault();
-            if(bk == null)
-            {
-                return NotFound();
-            }
-            return new ObjectResult(bk);
+
+            Book book = complementInformation(id);
+            if(book == null)return NotFound();
+            return new ObjectResult(book);
         }
         [HttpGet]
         public async Task<IActionResult> Add()
@@ -90,7 +89,7 @@ namespace PonfeLibrary.Controllers
             }
             return View(nameof(Show));
         }*/
-        
+        [HttpDelete]
         public async Task<IActionResult> Delete(int? id)
         {
             Book book = await db.Book.FindAsync(id);
